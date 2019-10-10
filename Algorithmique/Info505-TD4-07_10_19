@@ -1,0 +1,50 @@
+arbre234
+ajout d'un élément : quand la feuille est pleine, on peut faire remonter l'élément central pour "faire de la place"
+
+procédure ajoutarbre234(a : arbre234, e : element)
+début
+	si (est_vide(A)) alors 
+		ajouter(A, e) = <(x), o, o>
+		ajouter(<(a), o, o>, x) =
+			si x<a alors
+				<(x,a), o, o, o>
+			sinon
+				<(a, x), o, o, o>
+			finsi
+		ajouter(<(a1,a2), o, o, o>, x) =
+			si x<a1 alors 
+				<(x, a1, a2), o, o, o, o>
+			sinon
+				si x<a2 alors
+					<(a1, x, a2), o, o, o, o>
+				sinon
+					<(a1, a2, x), o, o, o, o>
+				finsi
+			finsi
+	finsi
+	si (arbre_vide(A1)=faux && arbre_vide(A2)=faux) alors
+		ajouter(<(a), A1, A2>, x) =
+			si x<a alors
+				<(a), ajouter(A1, x), A2>
+			sinon
+				<(a), A1, ajouter(A2, x)>
+			finsi
+	finsi
+	si (arbre_vide(A1)=faux && arbre_vide(A2)=faux && arbre_vide(A3)=faux) alors
+		ajouter(<(a1, a2), A1, A2, A3>, x) =
+			si x<a1 alors
+				<(a1, a2), ajouter(A1, x), A2, A3>
+			sinon
+				si x<a2 alors
+					<(a1,a2), A1, ajouter(A2, x), A3>
+				sinon
+					<(a1,a2), A1, A2, ajouter(A3, x)>
+				finsi
+			finsi
+	finsi
+	ajouter(<(a1, a2, a3), A1, A2, A3, A4>, x) =
+		si x<a2 alors
+			<(a2), ajouter(<(a1), A1, A2>, x), <(a3), A3, A4>>
+		sinon
+			<(a2), <(a1), A1, A2>, ajouter(<(a3), A3, A4>, x)>
+		finsi

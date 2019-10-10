@@ -1,0 +1,69 @@
+2.2
+fonction contenu(a:arbre; b:arbre) : booléen;
+resultat : booléen = vrai;
+début
+	si non(vide(a)) et non(vide(b)) alors
+		si taille(b)<taille(a) alors 
+			resultat = faux;
+		finsi;
+		si racine(a) == racine(b) alors
+			contenu(sg(a), sg(b))
+			contenu(sd(a), sd(b))
+		sinon resultat = faux;
+		finsi;
+	finsi;
+	renvoyer resultat;
+fin contenu;
+
+
+
+
+
+CORRECTION (par des élèves, correct)
+************************************************************
+1.
+	procedure impression_arbre(a:arbre, s:string)
+	début
+		si non(vide(a)) alors
+			impression_arbre(sd(a), concatenation(s, "      "));
+			print(s); print(racine(a)); print(cr);
+			impression_arbre(sg(a), concatenation(s, "      "));
+		finsi;
+	fin impression_arbre;
+
+2.1
+	procedure symetrie_arbre(a:arbre)
+	a_int:arbre;
+	début
+		si non(vide(a)) alors
+			a_int=sg(a);
+			sg(a) = sd(a);
+			sd(a) = a_int;	
+			symetrie_arbre(sg(a));
+			symetrie_arbre(sd(a));
+		finsi;
+	fin symetrie_arbre;
+
+2.2 (corriger par le prof)
+	fonction motif(a:arbre, b:arbre) : booléen;
+	début
+		si arbre_vide(a) alors retourner(vrai)
+		sinon si arbre_vide(b) alors retourner(faux)
+			sinon si racine(a) != racine(b) alors retourner(faux)
+				sinon retourner(Motif(sg(a), sg(b)) et Motif(sd(a),sd(b)))
+				finsi;
+			finsi;
+		finsi;
+	fin motif;
+
+	fonction recherche(a:arbre, b:arbre) : booléen
+	début
+		si motif(a,b) alors retourner(vrai)
+		sinon si arbre_vide(b) alors retourner(faux)
+			sinon si recherche(a,sg(b)) alors retourner(vrai)
+				sinon recherche(a,sd(b))
+				finsi
+			finsi
+		finsi
+	fin recherche
+************************************************************

@@ -1,0 +1,47 @@
+procedure recopier(var t1 : tableau[1..N], i1 : entier, var t2 : tableau[1..N], i2 : entier)
+début
+	si t1[i1] != ┴ alors
+	t2[i2] := t1[i1];
+	recopier(t1, i1*2, t2, i2*2);
+	recopier(t1, i1*2+1, t2, i2*2+1);
+	finsi
+
+procedure rotadroite(var t1 : tableau[1..N], var t2 : tableau[1..N])
+début
+	t2[1] := t1[2];
+	t2[3] := t1[1];
+	recopier(t1, 4, t2, 2);
+	recopier(t1, 5, t2, 6);
+	recopier(t1, 3, t2, 7);
+fin
+                                                                                 //a modifier pour le tp
+procedure rotagauche(var t1 : tableau[1..N], var t2 : tableau[1..N])
+début
+	t2[1] := t1[3];
+	t2[2] := t1[1];
+	recopier(t1, 2, t2, 4);
+	recopier(t1, 6, t2, 5);
+	recopier(t1, 7, t2, 3);
+fin
+
+fonction recherche234(a : A234, x : element) : booleen
+début
+	si arbre_vide(a) alors retourne (false);
+	sinon
+		cas (nb-fils(a))
+			2
+				si x = el1(a) alors retourne(vrai);
+				sinon si x < el1(a) alors recherche234(f1(a), x);
+					sinon recherche234(f2(a), x);
+				finsi
+			3
+				si x = el1(a) ou x = el2(a) alors retourne(vrai);
+				sinon si x < el1(a) alors recherche234(f1(a), x);
+					sinon si x < el2(a) alors recherche234(f2(a), x);
+						sinon recherche234(f3(a), x);
+			4
+				ETC...
+fin
+
+procedure ajout_arbre234(a1 : A234, elem : entier)
+début

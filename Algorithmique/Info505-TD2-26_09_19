@@ -1,0 +1,17 @@
+fonction remplir(a:arbre, i:int, t:tab) : tab
+début
+	si arbre_vide(a) retourner(┴);
+	sinon t[i]=racine(a);
+		remplir(sg(a), 2*i, t);
+		remplir(sd(a), 2*i+1, t);
+	finsi;
+
+
+			   Q				P
+			  /	\			   / \
+			 P	 W 		-> 	  U	  Q
+		    / \					 / \
+		   U   V 				V   W
+
+		   faire un tableau
+t1 |Q|P|W|U|V|┴|┴|		t2 |P|U|Q|┴|┴|V|W|
