@@ -1,6 +1,6 @@
 package constantes;
 
 public class Constantes {
-	static int TABMAX=100;
-	static int TABVIDE[]=null;
+	public static int TABMAX=40;
+	// public static int TABVIDE[]=null;
 }
